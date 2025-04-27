@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,19 +9,28 @@
     rel="stylesheet"
   />
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1 class="text-center my-4">QR Code Generator</h1>
+    <div class="d-flex justify-content-end">
+      <button id="theme-toggle" class="btn btn-secondary">Toggle Dark Mode</button>
+    </div>
+    <h1 class="text-center my-4">
+      <i class="bi bi-qr-code"></i> QR Code Generator
+    </h1>
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <div class="card p-4">
+        <div class="card p-5">
           <form>
-            <div class="mb-3">
+            <div class="mb-4">
               <label for="url" class="form-label">URL:</label>
               <input
                 type="text"
@@ -31,10 +39,8 @@
                 placeholder="Enter URL"
               />
             </div>
-            <div class="mb-3">
-              <label for="fillColor" class="form-label"
-                >Fill Color:</label
-              >
+            <div class="mb-4">
+              <label for="fillColor" class="form-label">Fill Color:</label>
               <input
                 type="color"
                 class="form-control form-control-color"
@@ -42,10 +48,8 @@
                 value="#000000"
               />
             </div>
-            <div class="mb-3">
-              <label for="backColor" class="form-label"
-                >Background Color:</label
-              >
+            <div class="mb-4">
+              <label for="backColor" class="form-label">Background Color:</label>
               <input
                 type="color"
                 class="form-control form-control-color"
@@ -53,7 +57,7 @@
                 value="#ffffff"
               />
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
               <label for="logo" class="form-label">Logo Image:</label>
               <input
                 type="file"
@@ -75,12 +79,13 @@
     </div>
     <div class="row justify-content-center mt-4">
       <div class="col-md-6 text-center">
-        <div id="qrcode"></div>
+        <div id="qrcode" class="qr-container">
+          <p class="text-muted">Your QR code will appear here.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- No more client-side qrcode.js; we’ll POST to /api/qrcode -->
   <script src="script.js"></script>
 </body>
 </html>
