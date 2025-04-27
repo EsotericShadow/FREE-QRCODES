@@ -8,12 +8,12 @@
 }
 
 body.dark-mode {
-  --background: linear-gradient(135deg, #2c3e50, #4a4a4a);
-  --card-bg: #2c3e50;
-  --text-color: #f0f0f0;
+  --background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+  --card-bg: #252525;
+  --text-color: #e0e0e0;
   --btn-bg: #1abc9c;
   --btn-hover-bg: #16a085;
-  --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  --shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -73,7 +73,7 @@ h1 {
 }
 
 body.dark-mode .qr-container {
-  background: #34495e;
+  background: #333333;
 }
 
 .qr-container p {
@@ -88,6 +88,12 @@ body.dark-mode .qr-container {
   border: 1px solid #ced4da;
   padding: 10px;
   transition: border-color 0.3s ease;
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+body.dark-mode .form-control {
+  border: 1px solid #555555;
 }
 
 .form-control:focus {
@@ -104,9 +110,18 @@ body.dark-mode .qr-container {
   border-radius: 25px;
   margin-top: 10px;
   transition: background 0.3s ease;
+  background: #6c757d;
   color: #fff;
+}
+
+body.dark-mode .btn-secondary {
+  background: #4a4a4a;
 }
 
 .btn-secondary:hover {
   background: #5a6268;
+}
+
+body.dark-mode .btn-secondary:hover {
+  background: #636363;
 }
