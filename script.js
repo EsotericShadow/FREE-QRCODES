@@ -1,10 +1,13 @@
 async function generateQRCode() {
-  const url      = document.getElementById('url').value;
-  const fillColor= document.getElementById('fillColor').value;
-  const backColor= document.getElementById('backColor').value;
+  const url = document.getElementById('url').value;
+  const fillColor = document.getElementById('fillColor').value;
+  const backColor = document.getElementById('backColor').value;
   const logoFile = document.getElementById('logo').files[0];
 
-  if (!url) { alert('Enter a URL'); return; }
+  if (!url) {
+    alert('Enter a URL');
+    return;
+  }
 
   // If there's a logo, read it as DataURL
   let logoData = null;
@@ -12,12 +15,12 @@ async function generateQRCode() {
     logoData = await new Promise((res, rej) => {
       const reader = new FileReader();
       reader.onload = e => res(e.target.result);
-      reader.onerror= rej;
+      reader.onerror = rej;
       reader.readAsDataURL(logoFile);
     });
   }
 
-  // send all params off to Python
+  // Send all params off to Python
   const resp = await fetch('/api/qrcode', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -45,7 +48,7 @@ function displayQRCode(dataUrl) {
 
   const dl = document.createElement('button');
   dl.textContent = 'Download QR Code';
-  dl.className = 'btn btn-secondary';
+  dl.className = 'btn btn-secondary mt-3';
   dl.onclick = () => {
     const a = document.createElement('a');
     a.href = dataUrl;
@@ -54,3 +57,12 @@ function displayQRCode(dataUrl) {
   };
   container.appendChild(dl);
 }
+
+// Theme toggle for dark mode
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const toggleButton = document.getElementById('theme-toggle');
+  toggleButton.textContent = document.body.classList.contains('dark-mode')
+    ? 'Toggle Light Mode'
+    : 'Toggle Dark Mode';
+});
