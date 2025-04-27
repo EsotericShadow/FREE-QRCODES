@@ -1,17 +1,36 @@
-/* styles.css */
+:root {
+  --background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --btn-bg: #17a2b8;
+  --btn-hover-bg: #138496;
+  --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode {
+  --background: linear-gradient(135deg, #2c3e50, #4a4a4a);
+  --card-bg: #2c3e50;
+  --text-color: #f0f0f0;
+  --btn-bg: #1abc9c;
+  --btn-hover-bg: #16a085;
+  --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
   min-height: 100vh;
   padding: 20px 0;
+  color: var(--text-color);
 }
 
 .card {
   border: none;
   border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  background: #ffffff;
+  box-shadow: var(--shadow);
+  background: var(--card-bg);
   transition: transform 0.3s ease;
+  padding: 2rem;
 }
 
 .card:hover {
@@ -20,35 +39,72 @@ body {
 
 h1 {
   font-weight: 700;
-  color: #333;
+  color: var(--text-color);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary {
-  background: #007bff;
+  background: var(--btn-bg);
   border: none;
   border-radius: 25px;
   padding: 10px;
   font-weight: 600;
   transition: background 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
 }
 
 .btn-primary:hover {
-  background: #0056b3;
+  background: var(--btn-hover-bg);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Style for the server-generated QR image */
 #qrcode img {
   max-width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in;
+}
+
+.qr-container {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .qr-container {
+  background: #34495e;
+}
+
+.qr-container p {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .btn-secondary {
   border-radius: 25px;
   margin-top: 10px;
   transition: background 0.3s ease;
+  color: #fff;
 }
 
 .btn-secondary:hover {
