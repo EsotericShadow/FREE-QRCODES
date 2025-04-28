@@ -137,9 +137,9 @@ body.dark-mode .btn-secondary:hover {
 }
 
 .qr-container .text-muted {
-  color: #1a1a1a; /* Dark, almost black for light mode */
+  color: #1a1a1a !important; /* Dark, almost black for light mode */
 }
 
 body.dark-mode .qr-container .text-muted {
-  color: #f8f9fa; /* Light, whitish for dark mode */
+  color: #f8f9fa !important; /* Light, whitish for dark mode */
 }
