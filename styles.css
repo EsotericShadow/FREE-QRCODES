@@ -135,3 +135,11 @@ body.dark-mode .btn-secondary:hover {
 .form-label {
   color: var(--text-color);
 }
+
+.qr-container .text-muted {
+  color: #1a1a1a; /* Dark, almost black for light mode */
+}
+
+body.dark-mode .qr-container .text-muted {
+  color: #f8f9fa; /* Light, whitish for dark mode */
+}
