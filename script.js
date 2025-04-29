@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Event listeners for color mode radio buttons
   const solidRadio = document.getElementById('colorModeSolid');
   const gradientRadio = document.getElementById('colorModeGradient');
   const solidOptions = document.getElementById('solidColorOptions');
@@ -18,7 +17,45 @@ document.addEventListener('DOMContentLoaded', () => {
       gradientOptions.style.display = 'block';
     }
   });
+
+  // Initial preview update
+  updatePreview();
 });
+
+// Function to update live preview
+function updatePreview() {
+  const url = document.getElementById('url').value || 'https://example.com';
+  const backColor = document.getElementById('backColor').value;
+  const colorMode = document.querySelector('input[name="colorMode"]:checked').value;
+  let fillColor = '#000000';
+
+  if (colorMode === 'solid') {
+    fillColor = document.getElementById('fillColor').value;
+  } else {
+    // For gradient, use first color for simplicity in preview
+    fillColor = document.getElementById('gradientColor1').value;
+  }
+
+  const previewContainer = document.getElementById('preview');
+  previewContainer.innerHTML = '<p class="text-muted">Generating preview...</p>';
+
+  // Use qrcode library to generate preview
+  new QRCode(previewContainer, {
+    text: url,
+    width: 200,
+    height: 200,
+    colorDark: fillColor,
+    colorLight: backColor,
+  });
+}
+
+// Add event listeners for real-time updates
+document.getElementById('url').addEventListener('input', updatePreview);
+document.getElementById('backColor').addEventListener('input', updatePreview);
+document.getElementById('colorModeSolid').addEventListener('change', updatePreview);
+document.getElementById('colorModeGradient').addEventListener('change', updatePreview);
+document.getElementById('fillColor').addEventListener('input', updatePreview);
+document.getElementById('gradientColor1').addEventListener('input', updatePreview);
 
 async function generateQRCode() {
   const url = document.getElementById('url').value;
@@ -48,7 +85,6 @@ async function generateQRCode() {
     payload.gradientColor2 = document.getElementById('gradientColor2').value;
   }
 
-  // If there's a logo, read it as DataURL
   if (logoFile) {
     payload.logo = await new Promise((res, rej) => {
       const reader = new FileReader();
@@ -58,7 +94,6 @@ async function generateQRCode() {
     });
   }
 
-  // Send all params off to Python
   try {
       const resp = await fetch('/api/qrcode', {
         method: 'POST',
@@ -81,17 +116,16 @@ async function generateQRCode() {
 }
 
 function displayQRCode(dataUrl) {
-  const container = document.getElementById('qrcode');
-  container.innerHTML = ''; // Clear previous QR code or placeholder text
+  const container = document.getElementById('preview');
+  container.innerHTML = '';
   const img = new Image();
   img.src = dataUrl;
-  img.alt = 'QR Code';
-  img.style.maxWidth = '100%'; // Ensure image fits container
+  img.alt = 'Generated QR Code';
+  img.style.maxWidth = '100%';
   img.style.height = 'auto';
   img.style.borderRadius = '10px';
   container.appendChild(img);
 
-  // Add download button if not already present
   let dlButton = container.querySelector('.download-button');
   if (!dlButton) {
       dlButton = document.createElement('button');
