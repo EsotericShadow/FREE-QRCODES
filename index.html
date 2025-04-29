@@ -39,14 +39,63 @@
                 placeholder="Enter URL"
               />
             </div>
+            <!-- Module Shape -->
             <div class="mb-4">
-              <label for="fillColor" class="form-label">Fill Color:</label>
+              <label for="moduleShape" class="form-label">Module Shape:</label>
+              <select class="form-select" id="moduleShape">
+                <option value="square" selected>Square</option>
+                <option value="rounded">Rounded</option>
+                <option value="circle">Circle</option>
+                <option value="vertical">Vertical Bars</option>
+                <option value="horizontal">Horizontal Bars</option>
+              </select>
+            </div>
+
+            <!-- Color Mode -->
+            <div class="mb-4">
+              <label class="form-label">Color Mode:</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="colorMode" id="colorModeSolid" value="solid" checked>
+                  <label class="form-check-label" for="colorModeSolid">Solid Color</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="colorMode" id="colorModeGradient" value="gradient">
+                  <label class="form-check-label" for="colorModeGradient">Gradient</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Solid Color Options (Initially Visible) -->
+            <div id="solidColorOptions" class="mb-4">
+              <label for="fillColor" class="form-label">Solid Fill Color:</label>
               <input
                 type="color"
                 class="form-control form-control-color"
                 id="fillColor"
                 value="#000000"
               />
+            </div>
+
+            <!-- Gradient Options (Initially Hidden) -->
+            <div id="gradientOptions" class="mb-4" style="display: none;">
+              <label for="gradientType" class="form-label">Gradient Type:</label>
+              <select class="form-select mb-2" id="gradientType">
+                <option value="radial" selected>Radial</option>
+                <option value="square">Square</option>
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+              </select>
+              <div class="row">
+                 <div class="col">
+                    <label for="gradientColor1" class="form-label">Gradient Color 1:</label>
+                    <input type="color" class="form-control form-control-color" id="gradientColor1" value="#000000"/>
+                 </div>
+                 <div class="col">
+                    <label for="gradientColor2" class="form-label">Gradient Color 2:</label>
+                    <input type="color" class="form-control form-control-color" id="gradientColor2" value="#FFFFFF"/>
+                 </div>
+              </div>
             </div>
             <div class="mb-4">
               <label for="backColor" class="form-label">Background Color:</label>
