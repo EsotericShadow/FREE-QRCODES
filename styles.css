@@ -1,131 +1,84 @@
-/* ---------- Global ---------------------------------------------------- */
-:root {
-  --neon-primary: #11f4ff;
-  --neon-secondary: #007bff;
-  --bg-1: #0a0e17;
-  --bg-2: #101522;
-  --glass: rgba(255, 255, 255, 0.05);
-  --border: rgba(17, 244, 255, 0.3);
-  --text: #c9d1ff;
-  --shadow: 0 0 12px rgba(17, 244, 255, 0.4);
-  --radius: 22px;
-  --transition: 0.25s ease;
+/* styles.css */
+:root{
+  --c-neon:#11f4ff;
+  --c-bg1:#0a0e17;
+  --c-bg2:#101522;
+  --c-text:#c9d1ff;
+  --c-shadow:0 0 12px rgba(17,244,255,.4);
+  --radius:20px;
+  --speed:.25s;
 }
-
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(160deg,var(--c-bg1),var(--c-bg2));
+  overflow:hidden;
+  color:var(--c-text);
 }
+canvas#bg{position:fixed;inset:0;z-index:-2}
 
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  color: var(--text);
-  background: linear-gradient(170deg, var(--bg-1) 0%, var(--bg-2) 100%);
-  overflow-x: hidden;
+.ui-glass{
+  width:800px;height:450px; /* tuned to project.json Box ratio */
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(17,244,255,.25);
+  border-radius:var(--radius);
+  box-shadow:var(--c-shadow);
+  padding:24px 32px;
+  pointer-events:auto;      /* restored inside CSS3D layer */
 }
-
-canvas#bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -2;
+.title{
+  font-size:28px;
+  color:var(--c-neon);
+  text-shadow:0 0 8px var(--c-neon);
+  margin-bottom:16px;
 }
-
-/* ---------- Overlay & glass ------------------------------------------ */
-.overlay {
-  position: relative;
-  z-index: 5;
+.lbl{display:block;margin:12px 0 4px;font-weight:600;color:var(--c-neon)}
+input,select,button{
+  width:100%;
+  padding:8px 10px;
+  border:1px solid var(--c-neon);
+  border-radius:8px;
+  background:transparent;
+  color:var(--c-text);
+  box-shadow:0 0 6px rgba(17,244,255,.25);
 }
-
-.glass {
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+input[type=color]{padding:0;height:40px}
+input:focus,select:focus{outline:none;box-shadow:0 0 12px var(--c-neon)}
+.fieldset{border:1px solid var(--c-neon);padding:10px;border-radius:8px;margin-top:12px}
+.fieldset legend{padding:0 6px}
+.fieldset label{margin-right:16px}
+.d-none{display:none}
+.row-2{display:flex;gap:12px}
+.btn-primary{
+  margin-top:18px;
+  cursor:pointer;
+  background:var(--c-neon);
+  color:#000;
+  font-weight:600;
+  transition:transform var(--speed),box-shadow var(--speed);
 }
-
-.glass-input,
-.form-select,
-.form-control-color {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text) !important;
-  border-radius: var(--radius);
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 16px var(--c-neon)}
+.btn-light{
+  background:transparent;
+  border:1px solid var(--c-neon);
+  padding:6px 10px;
+  border-radius:8px;
+  color:var(--c-neon);
+  cursor:pointer;
+  transition:background var(--speed);
 }
-
-.glass-input:focus,
-.form-select:focus {
-  outline: none;
-  border-color: var(--neon-primary);
-  box-shadow: 0 0 0 2px var(--neon-primary);
+.btn-light:hover{background:var(--c-neon);color:#000}
+.preview{
+  margin-top:20px;
+  height:180px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(17,244,255,.25);
+  border-radius:12px;
 }
-
-/* ---------- Neon accents -------------------------------------------- */
-.neon-title {
-  color: var(--neon-primary);
-  text-shadow: 0 0 12px var(--neon-primary);
-}
-
-.neon-label {
-  font-weight: 600;
-  color: var(--neon-primary);
-}
-
-/* ---------- Buttons -------------------------------------------------- */
-.glow-btn,
-.btn-secondary {
-  border: none;
-  border-radius: var(--radius);
-  transition: var(--transition);
-}
-
-.glow-btn {
-  background: var(--neon-primary);
-  color: #000;
-  box-shadow: var(--shadow);
-}
-
-.glow-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 16px var(--neon-primary);
-}
-
-.btn-secondary {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  color: var(--neon-primary);
-}
-
-.btn-secondary:hover {
-  background: var(--neon-primary);
-  color: #000;
-}
-
-/* ---------- QR output ------------------------------------------------ */
-.qr-container {
-  padding: 1.5rem;
-  text-align: center;
-  min-height: 260px;
-}
-
-.placeholder-text {
-  opacity: 0.45;
-}
-
-/* ---------- Dark / light toggle ------------------------------------- */
-body.light {
-  --bg-1: #dfe8ff;
-  --bg-2: #b9c8ff;
-  --glass: rgba(255, 255, 255, 0.65);
-  --border: rgba(0, 0, 0, 0.1);
-  --text: #0e182d;
-}
-
-body.light .neon-title,
-body.light .neon-label,
-body.light .glow-btn,
-body.light .btn-secondary {
-  color: var(--neon-secondary);
-  background: var(--neon-secondary);
+.placeholder{opacity:.45}
+body.light{
+  --c-bg1:#dce7ff;--c-bg2:#b9c8ff;--c-text:#0e182d;
 }
