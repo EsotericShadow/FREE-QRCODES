@@ -25,7 +25,7 @@ def hex_to_rgb(hex_color):
         return tuple(int(hex_color[i]*2, 16) for i in (0, 1, 2))
     return (0, 0, 0) # Default to black if invalid
 
-@app.route("/api/generator", methods=["POST"])
+@app.route("/api/qrcode", methods=["POST"])
 def gen_qr():
     try:
         data = request.get_json()
