@@ -18,15 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       gradientOptions.style.display = 'block';
     }
   });
-
-  // Theme toggle for dark mode
-  document.getElementById('theme-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const toggleButton = document.getElementById('theme-toggle');
-    toggleButton.textContent = document.body.classList.contains('dark-mode')
-      ? 'Toggle Light Mode'
-      : 'Toggle Dark Mode';
-  });
 });
 
 async function generateQRCode() {
@@ -98,7 +89,6 @@ function displayQRCode(dataUrl) {
   img.style.maxWidth = '100%'; // Ensure image fits container
   img.style.height = 'auto';
   img.style.borderRadius = '10px';
-  img.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
   container.appendChild(img);
 
   // Add download button if not already present
@@ -106,18 +96,17 @@ function displayQRCode(dataUrl) {
   if (!dlButton) {
       dlButton = document.createElement('button');
       dlButton.textContent = 'Download QR Code';
-      dlButton.className = 'btn btn-secondary mt-3 download-button'; // Added class for identification
+      dlButton.className = 'btn btn-secondary mt-3 download-button';
       dlButton.onclick = () => {
         const a = document.createElement('a');
         a.href = dataUrl;
         a.download = 'qr_code.png';
-        document.body.appendChild(a); // Required for Firefox
+        document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
       };
       container.appendChild(dlButton);
   } else {
-      // Update existing button's href if needed (though regenerating QR code replaces the img src)
       dlButton.onclick = () => {
         const a = document.createElement('a');
         a.href = dataUrl;
