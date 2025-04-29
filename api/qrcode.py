@@ -1,5 +1,5 @@
-# api/qrcode.py
 from flask import Flask, request, jsonify, abort
+from flask_cors import CORS
 import qrcode
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.moduledrawers import (
@@ -15,6 +15,7 @@ import io, base64
 import re
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 # Helper to convert hex to RGB tuple
 def hex_to_rgb(hex_color):
