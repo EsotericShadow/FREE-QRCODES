@@ -1,145 +1,131 @@
+/* ---------- Global ---------------------------------------------------- */
 :root {
-  --background: linear-gradient(135deg, #a8e6cf, #dcedc1);
-  --card-bg: #ffffff;
-  --text-color: #333;
-  --btn-bg: #17a2b8;
-  --btn-hover-bg: #138496;
-  --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --neon-primary: #11f4ff;
+  --neon-secondary: #007bff;
+  --bg-1: #0a0e17;
+  --bg-2: #101522;
+  --glass: rgba(255, 255, 255, 0.05);
+  --border: rgba(17, 244, 255, 0.3);
+  --text: #c9d1ff;
+  --shadow: 0 0 12px rgba(17, 244, 255, 0.4);
+  --radius: 22px;
+  --transition: 0.25s ease;
 }
 
-body.dark-mode {
-  --background: linear-gradient(135deg, #1E2328, #1E2428);
-  --card-bg: #252525;
-  --text-color: #f8f9fa;
-  --btn-bg: #1abc9c;
-  --btn-hover-bg: #16a085;
-  --shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+* {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--background);
-  min-height: 100vh;
-  padding: 20px 0;
-  color: var(--text-color);
-}
-
-.card {
-  border: none;
-  border-radius: 15px;
-  box-shadow: var(--shadow);
-  background: var(--card-bg);
-  transition: transform 0.3s ease;
-  padding: 2rem;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-h1 {
-  font-weight: 700;
-  color: var(--text-color);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-  background: var(--btn-bg);
-  border: none;
-  border-radius: 25px;
-  padding: 10px;
-  font-weight: 600;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: var(--btn-hover-bg);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#qrcode img {
-  max-width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.5s ease-in;
-}
-
-.qr-container {
-  background: #f8f9fa;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .qr-container {
-  background: #333333;
-}
-
-.qr-container p {
   margin: 0;
-  padding: 20px;
-  text-align: center;
-  color: var(--text-color);
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  background: linear-gradient(170deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  overflow-x: hidden;
 }
 
-.form-control {
-  border-radius: 10px;
-  border: 1px solid #ced4da;
-  padding: 10px;
-  transition: border-color 0.3s ease;
-  background: var(--card-bg);
-  color: var(--text-color);
+canvas#bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -2;
 }
 
-body.dark-mode .form-control {
-  border: 1px solid #555555;
+/* ---------- Overlay & glass ------------------------------------------ */
+.overlay {
+  position: relative;
+  z-index: 5;
 }
 
-.form-control::placeholder {
-  color: var(--text-color);
-  opacity: 0.7;
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-.form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.glass-input,
+.form-select,
+.form-control-color {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text) !important;
+  border-radius: var(--radius);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.glass-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 0 2px var(--neon-primary);
+}
+
+/* ---------- Neon accents -------------------------------------------- */
+.neon-title {
+  color: var(--neon-primary);
+  text-shadow: 0 0 12px var(--neon-primary);
+}
+
+.neon-label {
+  font-weight: 600;
+  color: var(--neon-primary);
+}
+
+/* ---------- Buttons -------------------------------------------------- */
+.glow-btn,
+.btn-secondary {
+  border: none;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.glow-btn {
+  background: var(--neon-primary);
+  color: #000;
+  box-shadow: var(--shadow);
+}
+
+.glow-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px var(--neon-primary);
 }
 
 .btn-secondary {
-  border-radius: 25px;
-  margin-top: 10px;
-  transition: background 0.3s ease;
-  background: #6c757d;
-  color: #fff;
-}
-
-body.dark-mode .btn-secondary {
-  background: #4a4a4a;
-  color: #f8f9fa;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  color: var(--neon-primary);
 }
 
 .btn-secondary:hover {
-  background: #5a6268;
+  background: var(--neon-primary);
+  color: #000;
 }
 
-body.dark-mode .btn-secondary:hover {
-  background: #636363;
+/* ---------- QR output ------------------------------------------------ */
+.qr-container {
+  padding: 1.5rem;
+  text-align: center;
+  min-height: 260px;
 }
 
-.form-label {
-  color: var(--text-color);
+.placeholder-text {
+  opacity: 0.45;
 }
 
-.qr-container .text-muted {
-  color: #1a1a1a !important; /* Dark, almost black for light mode */
+/* ---------- Dark / light toggle ------------------------------------- */
+body.light {
+  --bg-1: #dfe8ff;
+  --bg-2: #b9c8ff;
+  --glass: rgba(255, 255, 255, 0.65);
+  --border: rgba(0, 0, 0, 0.1);
+  --text: #0e182d;
 }
 
-body.dark-mode .qr-container .text-muted {
-  color: #f8f9fa !important; /* Light, whitish for dark mode */
+body.light .neon-title,
+body.light .neon-label,
+body.light .glow-btn,
+body.light .btn-secondary {
+  color: var(--neon-secondary);
+  background: var(--neon-secondary);
 }
