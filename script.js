@@ -36,7 +36,7 @@ function updatePreview() {
     fillColor = document.getElementById('gradientColor1').value;
   }
 
-  const previewContainer = document.getElementById('preview');
+  const previewContainer = document.getElementById('qrcode'); // Changed from 'preview' to 'qrcode'
   previewContainer.innerHTML = '<p class="text-muted">Generating preview...</p>';
 
   // Use qrcode library to generate preview
@@ -116,7 +116,7 @@ async function generateQRCode() {
 }
 
 function displayQRCode(dataUrl) {
-  const container = document.getElementById('preview');
+  const container = document.getElementById('qrcode'); // Changed from 'preview' to 'qrcode'
   container.innerHTML = '';
   const img = new Image();
   img.src = dataUrl;
