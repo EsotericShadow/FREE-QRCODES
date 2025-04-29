@@ -1,11 +1,30 @@
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0A192F, #112240);
+  background: #0A192F
   color: #E5E7EB;
   min-height: 100vh;
   padding: 20px 0;
 }
 
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.7), rgba(17, 34, 64, 0.7));
+  z-index: -1;
+}
 .container {
   max-width: 1200px;
 }
