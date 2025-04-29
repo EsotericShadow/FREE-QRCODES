@@ -141,4 +141,4 @@ def handle_bad_request(e):
     return response
 
 # Note: For Vercel deployment, the Flask app object needs to be named 'app'.
-# The file structure `api/qrcode.py` suggests Vercel deployment.
+
