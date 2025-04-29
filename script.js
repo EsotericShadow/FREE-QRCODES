@@ -69,7 +69,7 @@ async function generateQRCode() {
 
   // Send all params off to Python
   try {
-      const resp = await fetch('/api/qrcode', {
+      const resp = await fetch('/api/generator', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
