@@ -1,145 +1,116 @@
-:root {
-  --background: linear-gradient(135deg, #a8e6cf, #dcedc1);
-  --card-bg: #ffffff;
-  --text-color: #333;
-  --btn-bg: #17a2b8;
-  --btn-hover-bg: #138496;
-  --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-body.dark-mode {
-  --background: linear-gradient(135deg, #1E2328, #1E2428);
-  --card-bg: #252525;
-  --text-color: #f8f9fa;
-  --btn-bg: #1abc9c;
-  --btn-hover-bg: #16a085;
-  --shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-}
-
+/* Global Styles */
 body {
   font-family: 'Poppins', sans-serif;
-  background: var(--background);
+  background: linear-gradient(135deg, #0A192F, #112240); /* Very dark blue gradient */
+  color: #E5E7EB; /* Light gray for text */
   min-height: 100vh;
   padding: 20px 0;
-  color: var(--text-color);
 }
 
+.container {
+  max-width: 600px;
+}
+
+/* Card Styles (Glassmorphism) */
 .card {
-  border: none;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
   border-radius: 15px;
-  box-shadow: var(--shadow);
-  background: var(--card-bg);
-  transition: transform 0.3s ease;
   padding: 2rem;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
 }
 
+/* Heading Styles */
 h1 {
   font-weight: 700;
-  color: var(--text-color);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-  background: var(--btn-bg);
-  border: none;
-  border-radius: 25px;
-  padding: 10px;
-  font-weight: 600;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: var(--btn-hover-bg);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#qrcode img {
-  max-width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.5s ease-in;
-}
-
-.qr-container {
-  background: #f8f9fa;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .qr-container {
-  background: #333333;
-}
-
-.qr-container p {
-  margin: 0;
-  padding: 20px;
+  color: #E5E7EB;
   text-align: center;
-  color: var(--text-color);
+  margin-bottom: 2rem;
 }
 
-.form-control {
+/* Form Label Styles */
+.form-label {
+  color: #E5E7EB;
+}
+
+/* Input and Select Styles (Glassmorphism) */
+.form-control,
+.form-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  border: 1px solid #ced4da;
   padding: 10px;
-  transition: border-color 0.3s ease;
-  background: var(--card-bg);
-  color: var(--text-color);
-}
-
-body.dark-mode .form-control {
-  border: 1px solid #555555;
+  color: #E5E7EB;
 }
 
 .form-control::placeholder {
-  color: var(--text-color);
-  opacity: 0.7;
+  color: #A7A9AC; /* Lighter gray for placeholder */
 }
 
-.form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.form-control:focus,
+.form-select:focus {
+  border-color: #3B82F6; /* Blue focus color */
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
 }
 
+/* Button Styles (Glassmorphism) */
+.btn-primary,
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 10px;
+  font-weight: 600;
+  color: #E5E7EB;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* QR Code Container Styles (Glassmorphism) */
+.qr-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+.qr-container p {
+  color: #E5E7EB;
+}
+
+/* QR Code Image Styles */
+#qrcode img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* Form Checkboxes and Radios */
+.form-check-input {
+  background-color: #E5E7EB;
+}
+
+.form-check-label {
+  color: #E5E7EB;
+}
+
+/* Animation for QR Code Fade-In */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.btn-secondary {
-  border-radius: 25px;
-  margin-top: 10px;
-  transition: background 0.3s ease;
-  background: #6c757d;
-  color: #fff;
-}
-
-body.dark-mode .btn-secondary {
-  background: #4a4a4a;
-  color: #f8f9fa;
-}
-
-.btn-secondary:hover {
-  background: #5a6268;
-}
-
-body.dark-mode .btn-secondary:hover {
-  background: #636363;
-}
-
-.form-label {
-  color: var(--text-color);
-}
-
-.qr-container .text-muted {
-  color: #1a1a1a !important; /* Dark, almost black for light mode */
-}
-
-body.dark-mode .qr-container .text-muted {
-  color: #f8f9fa !important; /* Light, whitish for dark mode */
+#qrcode img {
+  animation: fadeIn 0.5s ease-in;
 }
